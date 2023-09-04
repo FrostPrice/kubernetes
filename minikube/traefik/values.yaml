@@ -1,0 +1,23 @@
+# ingressRoute:
+#   dashboard:
+#     matchRule: Host(`traefik-ui.k8s`) && PathPrefix(`/dashboard/`) || PathPrefix(`/api/`)
+#     entryPoints: ["web", "traefik"]
+logs:
+  general:
+    level: DEBUG
+    filePath: /var/log/traefik.log
+  access:
+    enabled: true
+service:
+  type: ClusterIP
+deployment:
+  replicas: 1
+# annotations:
+#   neuvector.com/scan: "true"
+#   neuvector.com/scan-time: "300"
+#   traefik.ingress.kubernetes.io/auth-type: "forward"
+#   traefik.ingress.kubernetes.io/auth-response-headers: "X-Forwarded-User"
+#   traefik.ingress.kubernetes.io/auth-url: "http://neuvector-controller-service.neuvector:1025/k8s_auth"
+serversTransport:
+  proxyProtocol:
+    close: true

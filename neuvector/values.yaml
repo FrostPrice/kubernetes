@@ -1,0 +1,20 @@
+controller:
+  apisvc:
+    type: ClusterIP
+manager:
+  svc:
+    type: ClusterIP
+  env:
+    ssl: true
+  ingress:
+    enabled: true
+    host: neuvector.com
+    ingressClassName: nginx
+    path: "/"
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: web
+      # ingress.kubernetes.io/rewrite-target: /
+    tls:
+      - hosts:
+          - neuvector.com
+        secretName: neuvector-tls
