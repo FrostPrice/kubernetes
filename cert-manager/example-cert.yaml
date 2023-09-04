@@ -8,9 +8,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-  commonName: example.com
+  commonName: example.k8s
   privateKey:
     algorithm: RSA
     size: 2048
   dnsNames:
-    - example.com
+    - example.k8s

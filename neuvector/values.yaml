@@ -8,7 +8,7 @@ manager:
     ssl: true
   ingress:
     enabled: true
-    host: neuvector.com
+    host: neuvector.k8s
     ingressClassName: nginx
     path: "/"
     annotations:
@@ -16,5 +16,5 @@ manager:
       # ingress.kubernetes.io/rewrite-target: /
     tls:
       - hosts:
-          - neuvector.com
+          - neuvector.k8s
         secretName: neuvector-tls
