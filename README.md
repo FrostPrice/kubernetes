@@ -181,6 +181,25 @@ To use a configuration created in a file: kubectl apply -f FILE_NAME.yaml
 
     kubectl logs {pod-name}
 
+#### list namespaces
+
+    kubectl get namespaces
+
+##### list pods in a namespace
+
+    kubectl -n {namespace} get pods
+
+#### get every resource in all namespaces
+
+    kubectl get {resource} -A
+
+    or
+
+    kubectl get {resource} --all-namespaces
+
+#### exec command in pod (You may initiate a shell connection)
+
+    kubectl exec -it {container-pod-name} -- {command}
 ---
 
 ## **Misc**
@@ -201,3 +220,9 @@ The template attribute is a configuration of the Pod within the configuration of
   - matchLabels: a selector working like a if statement that searches for the key/value pair Labels
 
 To separate multiple YAML configuration within 1 file use this: ---
+
+Instaling kube-config manually:
+   
+    mkdir -p $HOME/.kube
+    sudo cp -i my-kube-config.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
