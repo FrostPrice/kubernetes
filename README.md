@@ -19,7 +19,7 @@ The Minikube folder has a simple script for managing the Minikube Cluster. You m
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
 **Disclaimer:** While efforts have been made to ensure its accuracy and reliability, I DO NOT GUARANTEE ANYTHING, and users are advised to use it at their own risk. The implementation and files should be carefully reviewed before use.
 
