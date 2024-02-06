@@ -2,15 +2,15 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: example-com-tls
-  namespace: cert-manager
+  namespace: example
 spec:
   secretName: example-com-tls
   issuerRef:
-    name: letsencrypt-production
+    name: letsencrypt-production # TODO: Change to your ClusterIssuer
     kind: ClusterIssuer
-  commonName: example.k8s
+  commonName: <YOUR_DOMAIN> # TODO: Change to your test domain
   privateKey:
     algorithm: RSA
     size: 2048
   dnsNames:
-    - example.k8s
+    - <YOUR_DOMAIN> # TODO: Change to your test domain

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-1
+  namespace: example
   labels:
     app: nginx-1
 spec:
@@ -17,11 +18,19 @@ spec:
       containers:
         - image: nginx
           name: nginx-1
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: nginx-1-service
+  namespace: example
 spec:
   selector:
     app: nginx-1
@@ -33,13 +42,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-1
+  namespace: example
   annotations:
-    kubernetes.io/ingress.class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-production"
-    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-production # TODO: Change to your ClusterIssuer
 spec:
+  ingressClassName: nginx # TODO: Change to your ingress class
   rules:
-    - host: example.k8s
+    - host: <YOUR_DOMAIN> # TODO: Change to your test domain
       http:
         paths:
           - path: /
@@ -51,5 +60,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - example.k8s
+        - <YOUR_DOMAIN> # TODO: Change to your test domain
       secretName: example-com-tls

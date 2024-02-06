@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: cloudflare-production
+spec:
+  acme:
+    email: <YOUR_EMAIL> # TODO: Change this to your email
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: cloudflare-production-token
+    solvers:
+      - dns01:
+          cloudflare:
+            email: <YOUR_EMAIL> # TODO: Change this to your email
+            apiTokenSecretRef:
+              name: cloudflare-api-token
+              key: api-token

@@ -1,7 +1,6 @@
-# ingressRoute:
-#   dashboard:
-#     matchRule: Host(`traefik-ui.k8s`) && PathPrefix(`/dashboard/`) || PathPrefix(`/api/`)
-#     entryPoints: ["web", "traefik"]
+ingressRoute:
+  dashboard:
+    enabled: false
 logs:
   general:
     level: DEBUG
@@ -9,15 +8,17 @@ logs:
   access:
     enabled: true
 service:
-  type: ClusterIP
+  ## TODO: Change this if no LB are available or you need to use a specific IP for the Controllers
+  # externalIPs:
+  #   - 192.168.1.2
+  #   - 172.10.10.10
+  type: LoadBalancer # TODO!: Change this if no LB are available
 deployment:
   replicas: 1
-# annotations:
-#   neuvector.com/scan: "true"
-#   neuvector.com/scan-time: "300"
-#   traefik.ingress.kubernetes.io/auth-type: "forward"
-#   traefik.ingress.kubernetes.io/auth-response-headers: "X-Forwarded-User"
-#   traefik.ingress.kubernetes.io/auth-url: "http://neuvector-controller-service.neuvector:1025/k8s_auth"
-serversTransport:
-  proxyProtocol:
-    close: true
+annotations:
+  ## If using neuvector, uncomment the following lines
+  # neuvector.com/scan: "true"
+  # neuvector.com/scan-time: "300"
+  # traefik.ingress.kubernetes.io/auth-type: "forward"
+  # traefik.ingress.kubernetes.io/auth-response-headers: "X-Forwarded-User"
+  # traefik.ingress.kubernetes.io/auth-url: "http://neuvector-controller-service.neuvector:1025/k8s_auth"

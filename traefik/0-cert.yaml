@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-dashboard-tls
+  namespace: traefik
+spec:
+  secretName: traefik-dashboard-tls
+  issuerRef:
+    name: "cloudflare-production"
+    kind: ClusterIssuer
+  dnsNames:
+    - <YOUR_DOMAIN> # TODO: Change this to your domain

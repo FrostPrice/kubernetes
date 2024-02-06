@@ -4,11 +4,11 @@ metadata:
   name: letsencrypt-staging
 spec:
   acme:
-    email: <MY_EMAIL>
+    email: <YOUR_EMAIL> # TODO: Change this to your email
     server: https://acme-staging-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-staging-key
     solvers:
       - http01:
           ingress:
-            class: nginx
+            class: nginx # TODO: Change this to your ingress class

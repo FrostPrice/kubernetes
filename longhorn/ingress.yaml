@@ -4,19 +4,22 @@ metadata:
   name: longhorn-ingress
   namespace: longhorn-system
   annotations:
-    # type of authentication
-    nginx.ingress.kubernetes.io/auth-type: basic
-    # prevent the controller from redirecting (308) to HTTPS
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    # name of the secret that contains the user/password definitions
-    nginx.ingress.kubernetes.io/auth-secret: basic-auth
-    # message to display with an appropriate context why the authentication is required
-    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required "
-    # custom max body size for file uploading like backing image uploading
-    nginx.ingress.kubernetes.io/proxy-body-size: 10000m
+    cert-manager.io/cluster-issuer: "cloudflare-production" # TODO!: Change this to your cluster issuer
+    ## TODO: If you're using Nginx and want basic auth, uncomment the following lines
+    # # type of authentication
+    # nginx.ingress.kubernetes.io/auth-type: basic
+    # # prevent the controller from redirecting (308) to HTTPS
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # # name of the secret that contains the user/password definitions
+    # nginx.ingress.kubernetes.io/auth-secret: basic-auth
+    # # message to display with an appropriate context why the authentication is required
+    # nginx.ingress.kubernetes.io/auth-realm: "Authentication Required "
+    # # custom max body size for file uploading like backing image uploading
+    # nginx.ingress.kubernetes.io/proxy-body-size: 10000m
 spec:
+  ingressClassName: nginx # TODO!: Change this to your ingress class
   rules:
-    - host: longhorn.k8s
+    - host: longhorn.k8s # TODO!: Change this to your domain
       http:
         paths:
           - pathType: Prefix
@@ -28,5 +31,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-        - longhorn.k8s
+        - longhorn.k8s # TODO!: Change this to your domain
       secretName: longhorn-tls

@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: traefik-dashboard-auth
+  namespace: traefik
+data:
+  users: dHJhZWZpazokYXByMSQuNU11OWt1dSQ4MlVpTkFCUndXNjVnVG14N3RLb3ov # TODO!: Remember to change this value, the default is traefik:nginx
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-dashboard-basicauth
+  namespace: traefik
+spec:
+  basicAuth:
+    secret: traefik-dashboard-auth

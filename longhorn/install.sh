@@ -21,8 +21,7 @@ if [ -z "$DEFAULT_PASSWORD" ]; then
   echo $DEFAULT_PASSWORD >$DIRECTORY_PATH/.DEFAULT_PASSWORD
 fi
 
-# helm repo add longhorn https://charts.longhorn.io
-# helm repo update
+helm repo add longhorn https://charts.longhorn.io
 
 # For generic Kubernetes
 helm install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace --version 1.5.1 --values $DIRECTORY_PATH/values.yaml
@@ -33,6 +32,8 @@ kubectl -n longhorn-system get pod
 # For authentication and UI access
 USER=$DEFAULT_USER; PASSWORD=$DEFAULT_PASSWORD; echo "${USER}:$(openssl passwd -stdin -apr1 <<< ${PASSWORD})" >> auth
 kubectl -n longhorn-system create secret generic basic-auth --from-file=auth
+
+#TODO * Implement the dashboard ingress with the generated random user
 
 echo ///////////////////////////////////////////////////////
 echo 

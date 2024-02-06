@@ -8,13 +8,14 @@ manager:
     ssl: true
   ingress:
     enabled: true
-    host: neuvector.k8s
-    ingressClassName: nginx
-    path: "/"
+    host: <YOUR_DOMAIN> # TODO: Change this to your domain
+    path: /
+    ingressClassName: "nginx" # TODO: Change this to your ingress class
     annotations:
-      traefik.ingress.kubernetes.io/router.entrypoints: web
-      # ingress.kubernetes.io/rewrite-target: /
-    tls:
-      - hosts:
-          - neuvector.k8s
-        secretName: neuvector-tls
+      cert-manager.io/cluster-issuer: "cloudflare-production"
+    tls: "true"
+    secretName: neuvector-tls
+
+# TODO: If running from a K3s, uncommment the following lines
+k3s:
+  enabled: true
