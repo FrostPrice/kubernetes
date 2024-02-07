@@ -8,7 +8,6 @@ The Minikube folder has a simple script for managing the Minikube Cluster. You m
 
 ## TODOs
 
-- Finish the todos in the Minikube folder
 - Finish the todos in the Traefik folder
 - Finish the todos in the CertManager folder
 - Finish the todos in the Demo folder

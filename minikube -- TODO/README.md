@@ -1,12 +1,10 @@
 # **Minikube**
 
+Minikube is a tool that makes it easy to run Kubernetes locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day.
+
+**OBS:** This is a simple setup to run a local Kubernetes Cluster using Minikube. This is NOT a production setup.
+
 Link: [Minikube Docs](https://minikube.sigs.k8s.io/docs/start/)
-
-## TODOs
-
-- Improve the start-cluster.sh
-- Create the stop-cluster.sh
-- Fix the nginx, neuvector and traefik deployments
 
 Production Cluster Setup:
 
@@ -27,6 +25,27 @@ The Structure is as follows:
 
 1. Minikube runs as a Docker Container
 2. Docker inside Minikube to run our application Containers
+
+## Start Cluster
+
+You can run the following script to start the Minikube Cluster
+
+```bash
+./start-cluster.sh
+```
+
+The script will do the following:
+
+- Start Minikube with 4 CPUs and 8GB of RAM
+- Enable the addons:
+  - metallb
+  - metrics-server
+  - dashboard
+  - csi-hostpath-driver
+  - volumesnapshots
+- Configure the Metallb LoadBalancer IP to be the Minkube IP
+- Apply the Kubernetes Dashboard Ingress
+- After the script is done, you may use the Minkube as you desire. You can even install the other services informed in this repository.
 
 ### Start Minikube and check status
 
