@@ -11,7 +11,6 @@ The Minikube folder has a simple script for managing the Minikube Cluster. You m
 - Finish the todos in the Traefik folder
 - Finish the todos in the CertManager folder
 - Finish the todos in the Demo folder
-- Finish the todos in the Longhorn folder
 - Finish the todos in the MetricsServer folder
 - Finish the todos in the NeuVector folder
 - Implement the Prometheus folder

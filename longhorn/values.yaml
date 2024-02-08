@@ -1,2 +1,8 @@
+persistence:
+  defaultClassReplicaCount: 1
+defaultSettings:
+  replicaSoftAntiAffinity: true # This allows for the scheduling of replicas onthe same node
+longhornUI:
+  replicas: 1
 ingress:
   enabled: false
