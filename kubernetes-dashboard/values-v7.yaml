@@ -1,0 +1,34 @@
+app:
+  ingress:
+    enabled: true
+    hosts:
+      - dashboard.k8s # TODO!: Change this to your domain
+    ingressClassName: nginx # TODO!: Change this to your ingress class
+    pathType: ImplementationSpecific
+    secretName: kubernetes-dashboard-tls
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    issuer:
+      name: cloudflare-production # TODO!: Change this to your issuer
+      scope: cluster # TODO!: Change this to your issuer type ("default" or "cluster")
+    paths:
+      web: /
+      api: /api
+
+metrics-server:
+  enabled: false
+
+cert-manager:
+  enabled: false
+
+nginx:
+  enabled: false
+
+# If you want a Prometheus ServiceMonitor for the dashboard
+serviceMonitor:
+  enabled: true
+  scheme: https
+  tlsConfig:
+    insecureSkipVerify: false
