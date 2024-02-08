@@ -1,0 +1,26 @@
+grafana:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: "cloudflare-production"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    ingressClassName: nginx # TODO: Change to your Ingress Class
+    hosts:
+      - monitoring.k8s # TODO: Change to your domain
+    tls:
+      - secretName: prometheus-tls
+        hosts:
+          - monitoring.k8s # TODO: Change to your domain
+  persistence: # Using Longhorn for storage and StatefulSet
+    enabled: true
+    type: sts
+    storageClassName: longhorn
+    accessModes:
+      - ReadWriteOnce
+    size: 5Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
+  sidecar:
+    dashboards:
+      provider:
+        allowUiUpdates: true
