@@ -13,7 +13,12 @@ The Minikube folder has a simple script for managing the Minikube Cluster. You m
 - Finish the todos in the Demo folder
 - Finish the todos in the MetricsServer folder
 - Finish the todos in the NeuVector folder
-- Implement the Rancher UI folder
+
+## About Rancher
+
+If you want to install Rancher, first check the Version Support Matrix to see if your Kubernetes version is supported
+
+**[Rancher Support Matrix](https://www.suse.com/suse-rancher/support-matrix/all-supported-versions)**
 
 ## License
 

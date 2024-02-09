@@ -8,8 +8,16 @@ For most instalations it's preferred to add the followging flags to the install 
 - --write-kubeconfig-mode=644: so the kubeconfig file is created with the right permissions, and remove the necessity to change it later.
 - --disable=traefik: so no the default ingress and you must configure one from the ground up, so to have more control of the ingress.
 
+To install the last stable version of k3s:
+
 ```bash
 curl -sfL https://get.k3s.io | sh -s - --prefer-bundled-bin --write-kubeconfig-mode=644 --disable=traefik
+```
+
+To install a specific version of k3s:
+
+```bash
+curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION=<vX.Y.Z-rc1> sh -s - --prefer-bundled-bin --write-kubeconfig-mode=644 --disable=traefik
 ```
 
 ## Uninstall Script

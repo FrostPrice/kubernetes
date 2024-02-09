@@ -1,0 +1,22 @@
+hostname: rancher.k8s # TODO: Change this to your domai
+
+ingress:
+  enabled: true
+  ingressClassName: nginx # TODO: Change this to your ingress class
+  includeDefaultExtraAnnotations: true
+  extraAnnotations:
+    cert-manager.io/cluster-issuer: "cloudflare-production" # TODO: Change this to your cluster issuer, only if using tls.source as secret. If using tls.source as letsEncrypt or rancher, remove this line
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  tls:
+    source: secret # If using DNS01, keep it as secret. If using HTTP01, change it to letsEncrypt or rancher
+    secretName: rancher-tls
+letsEncrypt:
+  email: <YOUR_EMAIL> # TODO: Change this to your email
+  environment: production # TODO: Change this to staging if you want to test first
+  ingress:
+    class: nginx # TODO: Change this to your ingress class
+
+replicas: 1
+
+# Comma separated list of domains or ip addresses that will not use the proxy
+noProxy: 127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.svc,.cluster.local
