@@ -13,6 +13,7 @@ The Minikube folder has a simple script for managing the Minikube Cluster. You m
 - Finish the todos in the Demo folder
 - Finish the todos in the MetricsServer folder
 - Finish the todos in the NeuVector folder
+- Add a cloudflared folder
 
 ## About Rancher
 
