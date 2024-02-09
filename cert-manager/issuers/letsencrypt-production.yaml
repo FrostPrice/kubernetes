@@ -11,4 +11,4 @@ spec:
     solvers:
       - http01:
           ingress:
-            class: <YOUR_EMAIL> # TODO: Change this to your ingress class
+            class: nginx # TODO: Change this to your ingress class
